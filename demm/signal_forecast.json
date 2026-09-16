@@ -1,5 +1,5 @@
 {
-  "server_time": "2026-09-16 09:29:33",
+  "server_time": "2026-09-16 09:59:59",
   "source": "station_db_eod",
   "method": "signal_trajectory_projection",
   "horizon_days": 5,
