@@ -1,9 +1,9 @@
 {
-  "server_time": "2026-09-18 15:12:38",
+  "server_time": "2026-09-20 15:14:44",
   "source": "station_db_eod",
   "method": "signal_trajectory_projection",
   "horizon_days": 5,
-  "generated_for": "2026-09-18",
+  "generated_for": "2026-09-20",
   "signal_kind": "combo(m9∪gate15)",
   "latest_gate15": {
     "signal": 1,
@@ -373,12 +373,6 @@
   ],
   "forecast": [
     {
-      "date": "2026-09-18",
-      "gate15": 1,
-      "m9": 1,
-      "meaning": "空仓"
-    },
-    {
       "date": "2026-09-21",
       "gate15": 1,
       "m9": 1,
@@ -400,6 +394,12 @@
       "date": "2026-09-24",
       "gate15": 0,
       "m9": 0,
+      "meaning": "满仓"
+    },
+    {
+      "date": "2026-09-28",
+      "gate15": 0,
+      "m9": 1,
       "meaning": "满仓"
     }
   ]
