@@ -1,5 +1,5 @@
 {
-  "server_time": "2026-10-05 19:43:17",
+  "server_time": "2026-10-05 20:00:42",
   "active_source": "gate15",
   "sources": {
     "gate15": "15m四因子精调闸",
@@ -57,7 +57,7 @@
   "swap": {
     "available": true,
     "tag": "sw15",
-    "asof": "2026-09-30",
+    "asof": "2026-10-05",
     "reg": 0,
     "current": {
       "pool": "pool5",
@@ -79,7 +79,7 @@
       "close": 155404.5,
       "ma320": 191635.87102050782
     },
-    "updated": "2026-10-05 13:00:12"
+    "updated": "2026-10-05 20:00:42"
   },
   "combo": {
     "available": true,
