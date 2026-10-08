@@ -1,5 +1,5 @@
 {
-  "server_time": "2026-10-08 15:59:18",
+  "server_time": "2026-10-08 16:03:58",
   "source": "intraday_state_selfproduce",
   "method": "signal_trajectory_projection",
   "signal_kind": "combo(m9|gate15)",
