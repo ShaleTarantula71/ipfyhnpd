@@ -1,7 +1,7 @@
 {
   "source": "sandbox_email",
   "subject": "ETF轮动策略 | [动量排序] pool5 @ 14:30 冠军 000015.SS",
-  "received_at": "2026-10-12 14:34:57",
+  "received_at": "2026-10-12 14:35:19",
   "channel": "imap+send_email",
   "ts": "2026-10-12 14:30:00",
   "pool": "pool5",
@@ -45,5 +45,6 @@
     }
   ],
   "champion_index": "000015.SS",
-  "champion_etf": "000015.SS"
+  "champion_etf": "510880.SS",
+  "champion": "510880.SS"
 }
