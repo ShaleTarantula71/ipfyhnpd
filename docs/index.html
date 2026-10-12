@@ -239,7 +239,8 @@ async function run(){
       setPill($("sBadge"),"p-ok","在线");
       $("sPos").textContent = sbx.position || "—";
       $("sMeta").textContent = "心跳 "+ageStr(sbx.ts)+" · 池 "+(sbx.pool||"—");
-      $("sPool").textContent = (sbx.pool||"—")+(sbx.champion?(" · "+sbx.champion):"");
+      $("sPool").textContent = (sbx.pool||"—")
+        + (sbx.champion?(" · 冠军 "+sbx.champion+(sbx.champion_index?(" ("+sbx.champion_index+")"):"")):"");
       $("sBeat").textContent = sbx.ts ? (fmt(sbx.ts)+" ("+ageStr(sbx.ts)+")") : "—";
     }
   }catch(e){}
