@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark light">
+<title>OBS 手机工作台</title>
+<style>
+  :root{
+    --bg:#0e1116; --card:#171b22; --card2:#1d222b; --line:#262c37;
+    --fg:#e9edf4; --mut:#8a94a6; --acc:#3b82f6;
+    --ok:#22c55e; --warn:#eab308; --bad:#ef4444; --off:#64748b;
+  }
+  @media (prefers-color-scheme: light){
+    :root{--bg:#f3f5f9;--card:#fff;--card2:#f7f9fc;--line:#e4e9f0;
+          --fg:#151a22;--mut:#5f6b7c;}
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  body{margin:0;background:var(--bg);color:var(--fg);padding:14px 12px 44px;
+       font:15px/1.5 -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;
+       max-width:600px;margin:0 auto;padding-bottom:calc(44px + env(safe-area-inset-bottom))}
+  header{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+  h1{font-size:17px;margin:0;font-weight:800;letter-spacing:.2px}
+  .hint{color:var(--mut);font-size:11px}
+  .btn{border:1px solid var(--line);background:var(--card);color:var(--fg);
+       border-radius:9px;padding:6px 12px;font-size:13px;font-weight:600}
+  .btn:active{opacity:.75}
+
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;
+        padding:13px 14px;margin-bottom:11px}
+  .ct{font-size:12px;font-weight:700;color:var(--mut);letter-spacing:.6px;
+      text-transform:uppercase;margin-bottom:9px;display:flex;justify-content:space-between;align-items:center}
+  .row{display:flex;justify-content:space-between;align-items:baseline;gap:10px;
+       padding:6px 0;border-bottom:1px dashed var(--line)}
+  .row:last-child{border-bottom:0}
+  .k{color:var(--mut);font-size:13px;white-space:nowrap}
+  .v{font-weight:600;font-variant-numeric:tabular-nums;text-align:right}
+
+  .hero{display:flex;align-items:center;justify-content:space-between;gap:12px}
+  .hero .big{font-size:26px;font-weight:800;line-height:1.15}
+  .hero .sm{font-size:12px;color:var(--mut)}
+
+  .pill{display:inline-block;padding:3px 10px;border-radius:999px;font-size:12px;font-weight:700}
+  .p-ok{background:rgba(34,197,94,.15);color:var(--ok)}
+  .p-warn{background:rgba(234,179,8,.15);color:var(--warn)}
+  .p-bad{background:rgba(239,68,68,.15);color:var(--bad)}
+  .p-off{background:rgba(100,116,139,.18);color:var(--off)}
+  .p-acc{background:rgba(59,130,246,.16);color:#60a5fa}
+
+  /* 对账条 */
+  #recon{border-radius:14px;padding:12px 14px;margin-bottom:11px;border:1px solid var(--line);
+         background:var(--card2);display:flex;align-items:center;gap:11px}
+  #recon .ic{font-size:20px;line-height:1}
+  #recon .tx{flex:1;min-width:0}
+  #recon .t1{font-weight:800;font-size:14px}
+  #recon .t2{font-size:11.5px;color:var(--mut);margin-top:1px}
+  .st-ok{background:rgba(34,197,94,.12);border-color:rgba(34,197,94,.35)!important}
+  .st-warn{background:rgba(234,179,8,.12);border-color:rgba(234,179,8,.35)!important}
+  .st-bad{background:rgba(239,68,68,.12);border-color:rgba(239,68,68,.35)!important}
+
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+  .mini{background:var(--card2);border:1px solid var(--line);border-radius:11px;padding:10px}
+  .mini .mk{font-size:11px;color:var(--mut);margin-bottom:3px}
+  .mini .mv{font-size:18px;font-weight:800;line-height:1.2}
+  .mini .ms{font-size:11px;color:var(--mut);margin-top:2px}
+
+  .exp{background:var(--card2);border:1px solid var(--line);border-radius:10px;
+       padding:8px 10px;margin-top:7px;font-size:12.5px}
+  .exp .et{color:var(--mut);font-size:11px;margin-bottom:3px}
+  .bar{height:5px;background:var(--line);border-radius:99px;overflow:hidden;margin-top:6px}
+  .bar>i{display:block;height:100%;background:var(--acc);border-radius:99px}
+  footer{color:var(--mut);font-size:11px;text-align:center;margin-top:16px;line-height:1.7}
+  code{font-size:10.5px;word-break:break-all}
+  .live{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--ok);
+        margin-right:5px;vertical-align:middle;animation:blink 2s infinite}
+  @keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
+</style>
+</head>
+<body>
+  <header>
+    <div>
+      <h1>OBS 手机工作台</h1>
+      <div class="hint"><span class="live"></span>每 60s 自刷新 · <span id="clock">—</span></div>
+    </div>
+    <button class="btn" onclick="run()">刷新</button>
+  </header>
+
+  <!-- 对账条 -->
+  <div id="recon" class="st-warn">
+    <div class="ic">⋯</div>
+    <div class="tx">
+      <div class="t1">对账中…</div>
+      <div class="t2">生产端 combo ⇄ 沙箱实际仓位</div>
+    </div>
+  </div>
+
+  <!-- 生产端 -->
+  <div class="card">
+    <div class="ct"><span>① 生产端 · 本机 minprod</span><span id="pSource" class="pill p-off">—</span></div>
+    <div class="hero" style="margin-bottom:9px">
+      <div>
+        <div class="big" id="pCombo">—</div>
+        <div class="sm" id="pComboNote">combo 信号</div>
+      </div>
+      <div style="text-align:right">
+        <div class="sm">信号时间</div>
+        <div class="v" id="pTime" style="font-size:13px">—</div>
+        <div class="sm" id="pAge">—</div>
+      </div>
+    </div>
+    <div class="grid2">
+      <div class="mini">
+        <div class="mk">gate15 · 15m 四因子闸</div>
+        <div class="mv" id="gSignal">—</div>
+        <div class="ms" id="gMeta">—</div>
+      </div>
+      <div class="mini">
+        <div class="mk">m9 · 日线九因子闸</div>
+        <div class="mv" id="mSignal">—</div>
+        <div class="ms" id="mMeta">—</div>
+      </div>
+    </div>
+    <div id="mExpiry"></div>
+    <div class="row" style="margin-top:9px"><span class="k">换池 (牛熊)</span><span class="v" id="swap">—</span></div>
+    <div class="row"><span class="k">空仓率 gate15 / m9</span><span class="v" id="cashR">—</span></div>
+  </div>
+
+  <!-- 沙箱端 -->
+  <div class="card">
+    <div class="ct"><span>② 沙箱端 · Ptrade 券商</span><span id="sBadge" class="pill p-off">待接入</span></div>
+    <div class="hero">
+      <div>
+        <div class="big" id="sPos" style="font-size:20px">待接入</div>
+        <div class="sm" id="sMeta">邮件通道已通 · 解析器未部署</div>
+      </div>
+    </div>
+    <div class="row"><span class="k">激活池 / 冠军</span><span class="v" id="sPool">—</span></div>
+    <div class="row"><span class="k">心跳 (邮件时间)</span><span class="v" id="sBeat">—</span></div>
+  </div>
+
+  <!-- 通道自检 -->
+  <div class="card">
+    <div class="ct"><span>③ 通道自检</span><span id="bBadge" class="pill p-off">—</span></div>
+    <div class="row"><span class="k">raw 直读延迟</span><span class="v" id="lat">—</span></div>
+    <div class="row"><span class="k">CORS</span><span class="v" id="cors">—</span></div>
+    <div class="row"><span class="k">数据新鲜度</span><span class="v" id="age">—</span></div>
+  </div>
+
+  <footer>
+    数据源 <code id="src"></code><br>
+    raw CDN 缓存 5min（已加 cache-bust）· 仅只读公开信号，无凭证
+  </footer>
+
+<script>
+const REPO="ShaleTarantula71/ipfyhnpd", BR="main";
+const RAW =`https://raw.githubusercontent.com/${REPO}/${BR}/demm/feed_live.json`;
+const SBX =`https://raw.githubusercontent.com/${REPO}/${BR}/demm/sandbox_status.json`;
+const $=id=>document.getElementById(id);
+$("src").textContent = RAW;
+
+const fmt = s => !s ? "—" : String(s).slice(11) || String(s);   // 取 HH:MM:SS
+function ageStr(iso){
+  if(!iso) return "—";
+  const t = new Date(String(iso).replace(/-/g,"/")).getTime();
+  if(isNaN(t)) return "—";
+  const d = Math.round((Date.now()-t)/1000);
+  if(d<60) return d+"s 前";
+  if(d<3600) return Math.round(d/60)+"min 前";
+  return Math.round(d/3600)+"h 前";
+}
+function sig(el,v,extra){
+  const hold = (v===1||v==="1");
+  el.textContent = v==null ? "—" : (hold?"空仓":"满仓");
+  el.style.color = hold ? "var(--warn)" : "var(--ok)";
+  if(extra!==undefined) el.title=extra;
+}
+function setPill(el,cls,txt){ el.className="pill "+cls; el.textContent=txt; }
+
+async function run(){
+  $("clock").textContent = new Date().toLocaleTimeString("zh-CN");
+  let prod=null, prodOk=false;
+
+  // ---- 生产端 ----
+  try{
+    const t0=performance.now();
+    const r=await fetch(RAW+"?cb="+Date.now(),{cache:"no-store"});
+    const dt=Math.round(performance.now()-t0);
+    const j=await r.json(); prod=j; prodOk=true;
+    $("lat").textContent=dt+" ms";
+    $("cors").textContent=r.headers.get("access-control-allow-origin")||"(无)";
+    setPill($("bBadge"),"p-ok","通"); 
+
+    $("pTime").textContent = j.server_time||"—";
+    const age=(Date.now()-new Date(String(j.server_time).replace(/-/g,"/")).getTime())/1000;
+    $("age").textContent=Math.round(age)+" s";
+    $("pAge").textContent=ageStr(j.server_time);
+
+    const c=j.combo||{};
+    $("pCombo").textContent = c.meaning ? ("combo " + c.meaning) : "—";
+    $("pCombo").style.color = (c.signal===1)?"var(--warn)":"var(--ok)";
+    $("pComboNote").textContent = c.note ? "m9="+(c.hold_m9?"持":"空")+" · gate15="+(c.hold_gate15?"持":"空") : "";
+    const src=j.sources||{};
+    setPill($("pSource"),"p-acc",(j.active_source||"—"));
+
+    const g=j.gate15||{};
+    sig($("gSignal"),g.signal);
+    $("gMeta").textContent = (g.latest_ts?("棒 "+fmt(g.latest_ts)):"—")
+      + (g.signal_kind?(" · "+g.signal_kind):"");
+
+    const m=j.m9||{};
+    sig($("mSignal"),m.signal);
+    $("mMeta").textContent = "点火 "+(m.fire||"—")+" · "+(m.last_date||"—");
+
+    // m9 延时剩余
+    $("mExpiry").innerHTML="";
+    (m.expiry||[]).forEach(e=>{
+      const total=e.d||0, rem=e.remain!=null?e.remain:0, used=Math.max(0,total-rem);
+      const pct= total? Math.min(100,Math.round(used/total*100)) : 0;
+      $("mExpiry").insertAdjacentHTML("beforeend",
+        `<div class="exp"><div class="et">m9 延时 · ${e.factor||""} (${e.fire_ts||""})</div>
+         <div>剩余 <b>${rem}</b> / ${total} 天 · 第 ${e.day||0} 天${e.early_exit?" · 提前退出":""}</div>
+         <div class="bar"><i style="width:${pct}%"></i></div></div>`);
+    });
+
+    const sw=j.swap||{};
+    $("swap").textContent = sw.available===false ? "—"
+      : ((sw.current&&sw.current.label)||"—") + (sw.last_flip?(" · 上次翻转 "+(sw.last_flip.date||"")):"");
+    $("cashR").textContent = ((g.cash_ratio!=null?g.cash_ratio:"—"))+"% / "+((m.cash_ratio!=null?m.cash_ratio:"—"))+"%";
+  }catch(e){
+    setPill($("bBadge"),"p-bad","失败");
+    $("lat").textContent=String(e).slice(0,32);
+  }
+
+  // ---- 沙箱端(预留: 解析器上线后自动点亮) ----
+  let sbx=null, sbxOk=false;
+  try{
+    const r=await fetch(SBX+"?cb="+Date.now(),{cache:"no-store"});
+    if(r.ok){ sbx=await r.json(); sbxOk=true;
+      setPill($("sBadge"),"p-ok","在线");
+      $("sPos").textContent = sbx.position || "—";
+      $("sMeta").textContent = "心跳 "+ageStr(sbx.ts)+" · 池 "+(sbx.pool||"—");
+      $("sPool").textContent = (sbx.pool||"—")+(sbx.champion?(" · "+sbx.champion):"");
+      $("sBeat").textContent = sbx.ts ? (fmt(sbx.ts)+" ("+ageStr(sbx.ts)+")") : "—";
+    }
+  }catch(e){}
+  if(!sbxOk){
+    setPill($("sBadge"),"p-off","待接入");
+    $("sPos").textContent="待接入";
+    $("sMeta").textContent="邮件通道已通 · 解析器未部署";
+    $("sPool").textContent="—"; $("sBeat").textContent="—";
+  }
+
+  // ---- 对账条 ----
+  const R=$("recon"), ic=R.querySelector(".ic"), t1=R.querySelector(".t1"), t2=R.querySelector(".t2");
+  R.className="st-warn";
+  if(!prodOk){
+    R.className="st-bad"; ic.textContent="✕"; t1.textContent="生产端不可达";
+    t2.textContent="raw 读取失败，检查 repo/分支/token 状态";
+  }else if(!sbxOk){
+    R.className="st-warn"; ic.textContent="◐"; t1.textContent="沙箱端待接入";
+    t2.textContent="生产端 combo="+((prod.combo||{}).meaning||"—")+" · 沙箱侧邮件解析器未部署";
+  }else{
+    const pc=(prod.combo||{}).meaning||"", sp=sbx.position||"";
+    const same = (pc.indexOf(sp)>=0)||(sp.indexOf(pc)>=0)||(pc===sp);
+    if(same){ R.className="st-ok"; ic.textContent="✓"; t1.textContent="对账一致";
+              t2.textContent="生产端 "+pc+" ＝ 沙箱 "+sp; }
+    else{ R.className="st-bad"; ic.textContent="✕"; t1.textContent="对账不一致（P0）";
+          t2.textContent="生产端 "+pc+" ≠ 沙箱 "+sp; }
+  }
+}
+run();
+setInterval(run, 60000);
+</script>
+</body>
+</html>
