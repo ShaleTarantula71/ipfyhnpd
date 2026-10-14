@@ -118,6 +118,7 @@
         <div class="mk">m9 · 日线九因子闸</div>
         <div class="mv" id="mSignal">—</div>
         <div class="ms" id="mMeta">—</div>
+        <div class="ms" id="mTime">—</div>
       </div>
     </div>
     <div id="mExpiry"></div>
@@ -203,13 +204,22 @@ async function run(){
     setPill($("pSource"),"p-acc",(j.active_source||"—"));
 
     const g=j.gate15||{};
-    sig($("gSignal"),g.signal);
+    // ★ 2026-10-14：feed 的 gate15.signal 已被 combo 覆盖（signal_kind="combo"，
+    //   真闸在 gate15_raw）。本卡按用户要求显示 **真 gate15 闸**，组合口径由上方大信号负责。
+    const gIsCombo = (g.signal_kind === "combo");
+    const graw = (g.gate15_raw!=null) ? g.gate15_raw : g.signal;
+    sig($("gSignal"), graw, gIsCombo ? "显示 gate15 原始闸；组合(combo)已并入上方大信号" : undefined);
     $("gMeta").textContent = (g.latest_ts?("棒 "+fmt(g.latest_ts)):"—")
-      + (g.signal_kind?(" · "+g.signal_kind):"");
+      + (gIsCombo ? (" · 原始闸"+(g.signal!=null?("("+ (g.signal===1?"空仓":"满仓") +")"):"")) : "");
 
     const m=j.m9||{};
     sig($("mSignal"),m.signal);
     $("mMeta").textContent = "点火 "+(m.fire||"—")+" · "+(m.last_date||"—");
+    // ★ 2026-10-14（用户要求）：m9 卡补「信号更新时间」（m9 只在 13:30/13:45 槽更新，
+    //   与 feed 的 server_time 不同，必须单列）。
+    const mu = m.updated||"";
+    $("mTime").textContent = mu ? ("更新 "+fmt(mu)+" · "+ageStr(mu)) : "更新 —";
+    $("mTime").title = mu;
 
     // m9 延时剩余
     $("mExpiry").innerHTML="";
