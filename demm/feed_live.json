@@ -1,5 +1,5 @@
 {
-  "server_time": "2026-10-22 09:12:31",
+  "server_time": "2026-10-22 09:31:16",
   "active_source": "gate15",
   "sources": {
     "gate15": "15m四因子精调闸",
@@ -24,7 +24,7 @@
     "available": true,
     "signal": 1,
     "fire": "D-MA2x11",
-    "updated": "2026-10-22 09:12:31",
+    "updated": "2026-10-22 09:31:13",
     "last_date": "2026-10-21",
     "last_bar_ts": "2026-10-21 15:00:00",
     "latest_close": 140798.296875,
