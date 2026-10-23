@@ -1,5 +1,5 @@
 {
-  "server_time": "2026-10-23 15:43:09",
+  "server_time": "2026-10-23 16:06:26",
   "active_source": "gate15",
   "sources": {
     "gate15": "15m四因子精调闸",
@@ -24,19 +24,19 @@
     "available": true,
     "signal": 1,
     "fire": "D-MA2x11",
-    "updated": "2026-10-23 15:43:09",
-    "last_date": "2026-10-22",
-    "last_bar_ts": "2026-10-22 15:00:00",
-    "latest_close": 136308.40625,
-    "cash_ratio": 11.29,
+    "updated": "2026-10-23 16:06:26",
+    "last_date": "2026-10-23",
+    "last_bar_ts": "2026-10-23 15:00:00",
+    "latest_close": 143060.5,
+    "cash_ratio": 11.3,
     "expiry": [
       {
         "factor": "D-F9",
         "fire_ts": "2026-09-29",
         "fire_idx": 8216,
-        "day": 13,
+        "day": 14,
         "d": 20,
-        "remain": 7,
+        "remain": 6,
         "end_ts": null,
         "early_exit": true
       }
