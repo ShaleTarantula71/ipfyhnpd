@@ -1,5 +1,5 @@
 {
-  "server_time": "2026-10-23 14:45:56",
+  "server_time": "2026-10-23 15:43:09",
   "active_source": "gate15",
   "sources": {
     "gate15": "15m四因子精调闸",
@@ -23,25 +23,25 @@
   "m9": {
     "available": true,
     "signal": 1,
-    "fire": "D-F9",
-    "updated": "2026-10-23 13:45:29",
-    "last_date": "2026-10-23",
-    "last_bar_ts": "2026-10-23 13:45:00",
-    "latest_close": 139235.0,
-    "cash_ratio": 11.3,
+    "fire": "D-MA2x11",
+    "updated": "2026-10-23 15:43:09",
+    "last_date": "2026-10-22",
+    "last_bar_ts": "2026-10-22 15:00:00",
+    "latest_close": 136308.40625,
+    "cash_ratio": 11.29,
     "expiry": [
       {
         "factor": "D-F9",
         "fire_ts": "2026-09-29",
         "fire_idx": 8216,
-        "day": 14,
+        "day": 13,
         "d": 20,
-        "remain": 6,
+        "remain": 7,
         "end_ts": null,
         "early_exit": true
       }
     ],
-    "note": "盘中实时版(当日未收盘日线)；与收盘后 recompute_all 同口径九函数",
+    "note": "收盘后全量重算（bar_daily 权威收盘日线，覆盖盘中实时行；库=子库）",
     "meaning": "空仓"
   },
   "swap": {
