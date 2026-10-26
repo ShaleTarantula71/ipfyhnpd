@@ -1,5 +1,5 @@
 {
-  "server_time": "2026-10-26 14:47:08",
+  "server_time": "2026-10-26 15:51:21",
   "active_source": "gate15",
   "sources": {
     "gate15": "15m四因子精调闸",
@@ -11,27 +11,38 @@
   },
   "gate15": {
     "available": true,
-    "signal": 0,
+    "signal": 1,
     "fire": "",
     "latest_ts": "2026-10-26 14:30:00",
     "expiry": {},
     "cash_ratio": 3.81,
-    "meaning": "满仓",
+    "meaning": "空仓",
     "gate15_raw": 0,
     "signal_kind": "combo"
   },
   "m9": {
     "available": true,
-    "signal": 0,
-    "fire": "",
-    "updated": "2026-10-26 13:45:51",
-    "last_date": "2026-10-26",
-    "last_bar_ts": "2026-10-26 13:45:00",
-    "latest_close": 143253.5,
+    "signal": 1,
+    "fire": "D-MA2x11",
+    "updated": "2026-10-26 15:51:20",
+    "last_date": "2026-10-23",
+    "last_bar_ts": "2026-10-23 15:00:00",
+    "latest_close": 143060.5,
     "cash_ratio": 11.3,
-    "expiry": [],
-    "note": "盘中实时版(当日未收盘日线)；与收盘后 recompute_all 同口径九函数",
-    "meaning": "满仓"
+    "expiry": [
+      {
+        "factor": "D-F9",
+        "fire_ts": "2026-09-29",
+        "fire_idx": 8216,
+        "day": 14,
+        "d": 20,
+        "remain": 6,
+        "end_ts": null,
+        "early_exit": true
+      }
+    ],
+    "note": "收盘后全量重算（bar_daily 权威收盘日线，覆盖盘中实时行；库=子库）",
+    "meaning": "空仓"
   },
   "swap": {
     "available": true,
@@ -62,10 +73,15 @@
   },
   "combo": {
     "available": true,
-    "signal": 0,
-    "meaning": "满仓",
-    "hold_m9": 1,
+    "signal": 1,
+    "meaning": "空仓",
+    "hold_m9": 0,
     "hold_gate15": 1,
+    "provisional": false,
+    "final": null,
+    "slot": null,
+    "gate15_ts": null,
+    "m9_updated": null,
     "note": "组合信号：空仓 = m9 或 gate15 任一空仓；仅两者都满仓才满仓"
   }
 }
