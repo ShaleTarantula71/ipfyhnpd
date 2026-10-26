@@ -1,5 +1,5 @@
 {
-  "server_time": "2026-10-26 16:02:23",
+  "server_time": "2026-10-26 19:05:35",
   "active_source": "gate15",
   "sources": {
     "gate15": "15m四因子精调闸",
@@ -11,43 +11,32 @@
   },
   "gate15": {
     "available": true,
-    "signal": 1,
+    "signal": 0,
     "fire": "",
-    "latest_ts": "2026-10-26 14:30:00",
+    "latest_ts": "2026-10-26 15:00:00",
     "expiry": {},
     "cash_ratio": 3.81,
-    "meaning": "空仓",
+    "meaning": "满仓",
     "gate15_raw": 0,
     "signal_kind": "combo"
   },
   "m9": {
     "available": true,
-    "signal": 1,
-    "fire": "D-MA2x11",
-    "updated": "2026-10-26 16:02:23",
-    "last_date": "2026-10-23",
-    "last_bar_ts": "2026-10-23 15:00:00",
-    "latest_close": 143060.5,
-    "cash_ratio": 11.3,
-    "expiry": [
-      {
-        "factor": "D-F9",
-        "fire_ts": "2026-09-29",
-        "fire_idx": 8216,
-        "day": 14,
-        "d": 20,
-        "remain": 6,
-        "end_ts": null,
-        "early_exit": true
-      }
-    ],
+    "signal": 0,
+    "fire": "",
+    "updated": "2026-10-26 17:43:09",
+    "last_date": "2026-10-26",
+    "last_bar_ts": "2026-10-26 15:00:00",
+    "latest_close": 141365.609375,
+    "cash_ratio": 11.2,
+    "expiry": [],
     "note": "收盘后全量重算（bar_daily 权威收盘日线，覆盖盘中实时行；库=子库）",
-    "meaning": "空仓"
+    "meaning": "满仓"
   },
   "swap": {
     "available": true,
     "tag": "sw15",
-    "asof": "2026-10-05",
+    "asof": "2026-10-26",
     "reg": 0,
     "current": {
       "pool": "pool5",
@@ -65,23 +54,24 @@
     },
     "note": "397999 15m 末棒 vs MA320; 前日判定, 次日生效(当日整日同池)",
     "ref": {
-      "date": "2026-09-30",
-      "close": 155404.5,
-      "ma320": 191635.87102050782
+      "date": "2026-10-26",
+      "close": 141365.609375,
+      "ma320": 192990.10666503906
     },
-    "updated": "2026-10-05 20:00:42"
+    "updated": "2026-10-26 17:43:08"
   },
   "combo": {
     "available": true,
-    "signal": 1,
-    "meaning": "空仓",
-    "hold_m9": 0,
+    "signal": 0,
+    "meaning": "满仓",
+    "hold_m9": 1,
     "hold_gate15": 1,
-    "provisional": false,
-    "final": null,
-    "slot": null,
-    "gate15_ts": null,
-    "m9_updated": null,
     "note": "组合信号：空仓 = m9 或 gate15 任一空仓；仅两者都满仓才满仓"
+  },
+  "repair": {
+    "by": "feed_repair.py",
+    "reason": "新机陈旧库 EOD 覆盖（m9 停在 10-23）后回推权威 10-26 结果",
+    "authority": "C:\\obs\\data",
+    "source_m9_updated": "2026-10-26 17:43:09"
   }
 }
