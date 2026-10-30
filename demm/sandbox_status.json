@@ -1,11 +1,11 @@
 {
   "source": "sandbox_email",
   "subject": "ETF轮动策略 | [动量排序] pool5 @ 09:30 冠军 000015.SS",
-  "received_at": "2026-10-30 09:30:09",
+  "received_at": "2026-10-30 09:35:17",
   "channel": "imap+send_email",
   "ts": "2026-10-30 09:30:00",
   "pool": "pool5",
-  "position_raw": "510880.SS (66300 股)",
+  "position_raw": "510880.SS (176200 股)",
   "position": "满仓",
   "rankings": [
     {
