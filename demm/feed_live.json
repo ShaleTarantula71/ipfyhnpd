@@ -1,5 +1,5 @@
 {
-  "server_time": "2026-10-29 15:59:17",
+  "server_time": "2026-10-30 09:30:11",
   "active_source": "gate15",
   "sources": {
     "gate15": "15m四因子精调闸",
@@ -24,7 +24,7 @@
     "available": true,
     "signal": 0,
     "fire": "",
-    "updated": "2026-10-29 15:59:16",
+    "updated": "2026-10-30 08:51:07",
     "last_date": "2026-10-29",
     "last_bar_ts": "2026-10-29 15:00:00",
     "latest_close": 136943.0,
@@ -52,7 +52,7 @@
       "from": "pool1",
       "to": "pool5"
     },
-    "note": "swap_state.json 陈旧 24 天（asof=2026-10-05），已抑制输出",
+    "note": "swap_state.json 陈旧 25 天（asof=2026-10-05），已抑制输出",
     "ref": {
       "date": "2026-09-30",
       "close": 155404.5,
