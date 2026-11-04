@@ -1,11 +1,11 @@
 {
   "source": "sandbox_email",
   "subject": "ETF轮动策略 | [动量排序] pool5 @ 09:30 冠军 399324.SZ",
-  "received_at": "2026-11-04 09:30:03",
+  "received_at": "2026-11-04 09:35:12",
   "channel": "imap+send_email",
   "ts": "2026-11-04 09:30:00",
   "pool": "pool5",
-  "position_raw": "159905.SZ (148200 股)",
+  "position_raw": "159905.SZ (394000 股)",
   "position": "满仓",
   "rankings": [
     {
@@ -13,7 +13,7 @@
       "index": "399324.SZ",
       "etf": "159905.SZ",
       "r13h": 0.0147,
-      "h": 0.0146
+      "h": 0.0145
     },
     {
       "rank": 2,
