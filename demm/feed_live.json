@@ -1,5 +1,5 @@
 {
-  "server_time": "2026-11-05 13:32:48",
+  "server_time": "2026-11-05 13:46:14",
   "active_source": "gate15",
   "sources": {
     "gate15": "15m四因子精调闸",
@@ -13,7 +13,7 @@
     "available": true,
     "signal": 0,
     "fire": "",
-    "latest_ts": "2026-11-05 13:30:00",
+    "latest_ts": "2026-11-05 13:45:00",
     "expiry": {},
     "cash_ratio": 6.41,
     "meaning": "满仓",
@@ -24,13 +24,13 @@
     "available": true,
     "signal": 0,
     "fire": "",
-    "updated": "2026-11-05 08:50:59",
-    "last_date": "2026-11-04",
-    "last_bar_ts": "2026-11-04 15:00:00",
-    "latest_close": 147897.90625,
+    "updated": "2026-11-05 13:46:10",
+    "last_date": "2026-11-05",
+    "last_bar_ts": "2026-11-05 13:31:00",
+    "latest_close": 153338.40625,
     "cash_ratio": 11.19,
     "expiry": [],
-    "note": "收盘后全量重算（bar_daily 权威收盘日线，覆盖盘中实时行；库=子库）",
+    "note": "盘中实时版(当日未收盘日线)；与收盘后 recompute_all 同口径九函数",
     "meaning": "满仓"
   },
   "swap": {
@@ -66,11 +66,11 @@
     "meaning": "满仓",
     "hold_m9": 1,
     "hold_gate15": 1,
-    "provisional": true,
-    "final": false,
-    "slot": "13:30",
-    "gate15_ts": "2026-11-05 13:30:00",
-    "m9_updated": "2026-11-05 08:50:59",
-    "note": "组合信号：空仓 = m9 或 gate15 任一空仓；仅两者都满仓才满仓（★半成品：m9 未定稿）"
+    "provisional": false,
+    "final": true,
+    "slot": "13:45",
+    "gate15_ts": "2026-11-05 13:45:00",
+    "m9_updated": "2026-11-05 13:46:10",
+    "note": "组合信号：空仓 = m9 或 gate15 任一空仓；仅两者都满仓才满仓"
   }
 }
