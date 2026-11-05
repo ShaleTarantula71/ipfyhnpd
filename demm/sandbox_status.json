@@ -1,50 +1,50 @@
 {
   "source": "sandbox_email",
-  "subject": "ETF轮动策略 | [动量排序] pool5 @ 10:00 冠军 399324.SZ",
-  "received_at": "2026-11-05 10:03:10",
+  "subject": "ETF轮动策略 | [动量排序] pool5 @ 10:15 冠军 000688.SS",
+  "received_at": "2026-11-05 10:18:22",
   "channel": "imap+send_email",
-  "ts": "2026-11-05 10:00:00",
+  "ts": "2026-11-05 10:15:00",
   "pool": "pool5",
   "position_raw": "159905.SZ (394000 股)",
   "position": "满仓",
   "rankings": [
     {
       "rank": 1,
-      "index": "399324.SZ",
-      "etf": "159905.SZ",
-      "r13h": 0.0294,
-      "h": 0.0082
+      "index": "000688.SS",
+      "etf": "588080.SS",
+      "r13h": 0.0357,
+      "h": 0.0406
     },
     {
       "rank": 2,
-      "index": "000905.SS",
-      "etf": "510500.SS",
-      "r13h": 0.0186,
-      "h": 0.016
+      "index": "399324.SZ",
+      "etf": "159905.SZ",
+      "r13h": 0.0292,
+      "h": 0.008
     },
     {
       "rank": 3,
-      "index": "000688.SS",
-      "etf": "588080.SS",
-      "r13h": 0.016,
-      "h": 0.018
+      "index": "000905.SS",
+      "etf": "510500.SS",
+      "r13h": 0.0255,
+      "h": 0.0238
     },
     {
       "rank": 4,
       "index": "399006.SZ",
       "etf": "159915.SZ",
-      "r13h": -0.0007,
-      "h": 0.0093
+      "r13h": 0.0097,
+      "h": 0.0207
     },
     {
       "rank": 5,
       "index": "000015.SS",
       "etf": "510880.SS",
-      "r13h": -0.0099,
-      "h": -0.0189
+      "r13h": -0.0142,
+      "h": -0.0234
     }
   ],
-  "champion_index": "399324.SZ",
-  "champion_etf": "159905.SZ",
-  "champion": "159905.SZ"
+  "champion_index": "000688.SS",
+  "champion_etf": "588080.SS",
+  "champion": "588080.SS"
 }
