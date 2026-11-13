@@ -1,5 +1,5 @@
 {
-  "server_time": "2026-11-13 14:30:57",
+  "server_time": "2026-11-13 14:45:53",
   "active_source": "gate15",
   "sources": {
     "gate15": "15m四因子精调闸",
@@ -13,9 +13,9 @@
     "available": true,
     "signal": 1,
     "fire": "60-F2",
-    "latest_ts": "2026-11-13 14:30:00",
+    "latest_ts": "2026-11-13 14:45:00",
     "expiry": {
-      "expire": "2026-11-13 14:30:00",
+      "expire": "2026-11-13 14:45:00",
       "fire_time": "2026-11-13 14:30:00",
       "delay_bars": 4,
       "dominant_factor": "60-F2"
@@ -73,8 +73,8 @@
     "hold_gate15": 0,
     "provisional": false,
     "final": true,
-    "slot": "14:30",
-    "gate15_ts": "2026-11-13 14:30:00",
+    "slot": "14:45",
+    "gate15_ts": "2026-11-13 14:45:00",
     "m9_updated": "2026-11-13 13:46:09",
     "note": "组合信号：空仓 = m9 或 gate15 任一空仓；仅两者都满仓才满仓"
   }
