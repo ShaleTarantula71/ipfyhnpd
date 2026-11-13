@@ -199,7 +199,15 @@ async function run(){
     const c=j.combo||{};
     $("pCombo").textContent = c.meaning ? ("combo " + c.meaning) : "—";
     $("pCombo").style.color = (c.signal===1)?"var(--warn)":"var(--ok)";
-    $("pComboNote").textContent = c.note ? "m9="+(c.hold_m9?"持":"空")+" · gate15="+(c.hold_gate15?"持":"空") : "";
+    // ★ 2026-11-13：空仓时必须点名「哪一侧 + 哪个因子」（原来只写 m9=持 / gate15=空）
+    const _gf=(j.gate15||{}).fire||"", _mf=(j.m9||{}).fire||"";
+    const _srcs=[];
+    if(c.hold_m9===0) _srcs.push("m9@"+(_mf||"?"));
+    if(c.hold_gate15===0) _srcs.push("gate15@"+(_gf||"?"));
+    $("pComboNote").textContent = c.note
+      ? ("m9="+(c.hold_m9?"持":"空")+" · gate15="+(c.hold_gate15?"持":"空")
+         + (c.signal===1&&_srcs.length?(" · 空仓触发 "+_srcs.join(" + ")):""))
+      : "";
     const src=j.sources||{};
     setPill($("pSource"),"p-acc",(j.active_source||"—"));
 
@@ -210,7 +218,8 @@ async function run(){
     const graw = (g.gate15_raw!=null) ? g.gate15_raw : g.signal;
     sig($("gSignal"), graw, gIsCombo ? "显示 gate15 原始闸；组合(combo)已并入上方大信号" : undefined);
     $("gMeta").textContent = (g.latest_ts?("棒 "+fmt(g.latest_ts)):"—")
-      + (gIsCombo ? (" · 原始闸"+(g.signal!=null?("("+ (g.signal===1?"空仓":"满仓") +")"):"")) : "");
+      + (gIsCombo ? (" · 原始闸"+(g.signal!=null?("("+ (g.signal===1?"空仓":"满仓") +")"):"")) : "")
+      + (graw===1 && g.fire ? (" · 触发 "+g.fire) : "");
 
     const m=j.m9||{};
     sig($("mSignal"),m.signal);
