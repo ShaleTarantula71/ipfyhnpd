@@ -1,5 +1,5 @@
 {
-  "server_time": "2026-11-16 13:56:49",
+  "server_time": "2026-11-17 08:11:33",
   "active_source": "gate15",
   "sources": {
     "gate15": "15m四因子精调闸",
@@ -12,15 +12,15 @@
   "gate15": {
     "available": true,
     "signal": 1,
-    "fire": "60-F2,STF",
-    "latest_ts": "2026-11-16 13:45:00",
+    "fire": "60-F2",
+    "latest_ts": "2026-11-16 15:00:00",
     "expiry": {
-      "expire": "2026-11-16 14:30:00",
+      "expire": "2026-11-13 14:45:00",
       "fire_time": "2026-11-13 14:30:00",
-      "delay_bars": 17,
+      "delay_bars": 4,
       "dominant_factor": "60-F2"
     },
-    "cash_ratio": 6.32,
+    "cash_ratio": 6.4,
     "meaning": "空仓",
     "gate15_raw": 1,
     "signal_kind": "combo"
@@ -29,13 +29,13 @@
     "available": true,
     "signal": 0,
     "fire": "",
-    "updated": "2026-11-16 13:50:50",
+    "updated": "2026-11-17 08:11:33",
     "last_date": "2026-11-16",
-    "last_bar_ts": "2026-11-16 13:42:00",
-    "latest_close": 141851.609375,
+    "last_bar_ts": "2026-11-16 15:00:00",
+    "latest_close": 139755.296875,
     "cash_ratio": 11.18,
     "expiry": [],
-    "note": "盘中实时版(当日未收盘日线)；与收盘后 recompute_all 同口径九函数",
+    "note": "收盘后全量重算（bar_daily 权威收盘日线，覆盖盘中实时行；库=子库）",
     "meaning": "满仓"
   },
   "swap": {
@@ -57,7 +57,7 @@
       "from": "pool1",
       "to": "pool5"
     },
-    "note": "swap_state.json 陈旧 42 天（asof=2026-10-05），已抑制输出",
+    "note": "swap_state.json 陈旧 43 天（asof=2026-10-05），已抑制输出",
     "ref": {
       "date": "2026-09-30",
       "close": 155404.5,
@@ -72,10 +72,10 @@
     "hold_m9": 1,
     "hold_gate15": 0,
     "provisional": false,
-    "final": true,
-    "slot": "13:45",
-    "gate15_ts": "2026-11-16 13:45:00",
-    "m9_updated": "2026-11-16 13:50:50",
+    "final": null,
+    "slot": null,
+    "gate15_ts": null,
+    "m9_updated": null,
     "note": "组合信号：空仓 = m9 或 gate15 任一空仓；仅两者都满仓才满仓"
   }
 }
